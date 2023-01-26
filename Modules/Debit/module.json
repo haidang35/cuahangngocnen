@@ -1,0 +1,11 @@
+{
+    "name": "Debit",
+    "alias": "debit",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Debit\\Providers\\DebitServiceProvider"
+    ],
+    "files": []
+}
