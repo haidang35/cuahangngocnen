@@ -67,7 +67,7 @@
                                         }}</a>
                                 </td>
                                 <td>{{ $customer->phone }}</td>
-                                <td>{{ $customer->total_debit_amount }}</td>
+                                <td>{{ $customer->total_formatted_debit_amount }}</td>
                                 <td>{{ $customer->total_paid_debit_amount }}</td>
                                 <td>{{ $customer->total_processing_debit_amount }}</td>
                             </tr>

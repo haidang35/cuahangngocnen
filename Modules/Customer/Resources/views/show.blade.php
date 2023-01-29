@@ -51,22 +51,26 @@
                         <div class="col-6">
                             <strong class="h4">Tổng số mã nợ đã trả: </strong>
                             <br />
-                            <button class="btn btn-success"><b class="h5">{{ $customer->report->total_paid_debit }}</b></button>
+                            <button class="btn btn-success"><b class="h5">{{ $customer->report->total_paid_debit
+                                    }}</b></button>
                         </div>
                         <div class="col-6">
                             <strong class="h4">Tổng số mã nợ chưa trả: </strong>
                             <br />
-                            <button class="btn btn-danger"><b class="h5">{{ $customer->report->total_processing_debit }}</b></button>
+                            <button class="btn btn-danger"><b class="h5">{{ $customer->report->total_processing_debit
+                                    }}</b></button>
                         </div>
                         <div class="col-6">
                             <strong class="h4">Tổng số mã nợ quá hẹn: </strong>
                             <br />
-                            <button class="btn btn-danger"><b class="h5">{{ $customer->report->total_out_of_date_debit }}</b></button>
+                            <button class="btn btn-danger"><b class="h5">{{ $customer->report->total_out_of_date_debit
+                                    }}</b></button>
                         </div>
                         <div class="col-6">
                             <strong class="h4">Tổng số mã nợ bị hủy bỏ: </strong>
                             <br />
-                            <button class="btn btn-warning"><b class="h5">{{ $customer->report->total_cancelled_debit }}</b></button>
+                            <button class="btn btn-warning"><b class="h5">{{ $customer->report->total_cancelled_debit
+                                    }}</b></button>
                         </div>
                     </div>
                 </center>
@@ -151,11 +155,58 @@
                                         <td>{{ $debit->payment_date }}</td>
                                         <td>
                                             <a href="{{ route('debit.edit', ['id' => $debit->id]) }}"
+                                                data-bs-toggle="modal" data-bs-target="#model-status-{{$debit->id}}"
                                                 class="btn btn-sm btn-success"><i
-                                                    class="fa-sharp fa-solid fa-pen"></i></a>
+                                                    class="fa-sharp fa-solid fa-circle-check"></i></a>
+                                            <a href="{{ route('debit.edit', ['id' => $debit->id]) }}"
+                                                class="btn btn-sm btn-info"><i class="fa-sharp fa-solid fa-pen"></i></a>
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#model{{$debit->id}}"
                                                 class="btn btn-sm btn-danger"><i
                                                     class="fa-sharp fa-solid fa-trash"></i></a>
+                                            <div id="model-status-{{$debit->id}}" class="modal" tabindex="-1"
+                                                role="dialog" aria-labelledby="model{{$debit->id}}Label"
+                                                aria-hidden="true">
+                                                <form method="POST"
+                                                    action="{{ route('debit.update.status', ['id' => $debit->id]) }}">
+                                                    @csrf
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title"
+                                                                    id="model-status-{{$debit->id}}Label">
+                                                                    Đánh dấu khách hàng đã thanh toán khoản nợ
+                                                                </h4>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h4>
+                                                                    Khách hàng <b>{{ $debit->customer?->name }}</b></h4>
+                                                                <div class="form-group">
+                                                                    <select class="form-control" name="status">
+                                                                        <option value="">Chọn trạng thái</option>
+                                                                        <option value="1">Đã thanh toán</option>
+                                                                        <option value="2">Chưa thanh toán</option>
+                                                                        <option value="3">Hủy</option>
+                                                                        <option value="4">Quá hạn</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                    class="btn btn-info waves-effect text-white"
+                                                                    data-bs-dismiss="modal">Hủy bỏ</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger waves-effect text-white">Có,
+                                                                    Chắc chắn</button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </form>
+
+                                            </div>
                                             <div id="model{{$debit->id}}" class="modal" tabindex="-1" role="dialog"
                                                 aria-labelledby="model{{$debit->id}}Label" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -169,8 +220,9 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <h4>Bạn đã chắc chắn xóa đơn ghi nợ <b>{{
-                                                                    $debit->formatted_amount }}</b>
-                                                                của khách hàng <b>{{ $debit->customer->name }}</b></h4>
+                                                                    $debit->formatted_amount
+                                                                    }}</b>
+                                                                của khách hàng <b>{{ $debit->customer?->name }}</b></h4>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button"
