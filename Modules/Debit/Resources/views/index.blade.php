@@ -42,10 +42,25 @@
                 <h5 class="card-title m-b-20">Quản lý ghi nợ</h5>
                 <form method="GET" action="{{ route('debit.index') }}" class="row">
                     <div class="col-md-3">
-                        <input class="form-control" name="keyword" value="{{ request()->get('keyword') }}" placeholder="Tìm kiếm theo tên, số điện thoại, số tiền"/>
+                        <input class="form-control" name="keyword" value="{{ request()->get('keyword') }}"
+                            placeholder="Tìm kiếm theo tên, số điện thoại, số tiền" />
                     </div>
                     <div class="col-md-2">
-                        <input class="form-control" name="created_at" value="{{ request()->get('created_at') }}" placeholder="Tìm kiếm theo ngày ghi nợ"/>
+                        <input class="form-control" name="created_at" value="{{ request()->get('created_at') }}"
+                            placeholder="Tìm kiếm theo ngày ghi nợ" />
+                    </div>
+                    <div class="col-md-2">
+                        @php
+                        $statuses = [1, 2, 3, 4];
+                        $status = request()->get('status');
+                        @endphp
+                        <select class="form-control" name="status">
+                            <option value="">Chọn trạng thái</option>
+                            <option value="1" @if($status==1) selected @endif>Đã trả</option>
+                            <option value="2" @if($status==2) selected @endif>Chưa trả</option>
+                            <option value="3" @if($status==3) selected @endif>Hủy</option>
+                            <option value="4" @if($status==4) selected @endif>Quá hẹn</option>
+                        </select>
                     </div>
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
@@ -85,9 +100,11 @@
                                 <td>{{ $debit->deadline }}</td>
                                 <td>{{ $debit->payment_date }}</td>
                                 <td>
+                                    @if($debit->status->value !== 1)
                                     <a href="{{ route('debit.edit', ['id' => $debit->id]) }}" data-bs-toggle="modal"
                                         data-bs-target="#model-status-{{$debit->id}}" class="btn btn-sm btn-success"><i
                                             class="fa-sharp fa-solid fa-circle-check"></i></a>
+                                    @endif
                                     <a href="{{ route('debit.edit', ['id' => $debit->id]) }}"
                                         class="btn btn-sm btn-info"><i class="fa-sharp fa-solid fa-pen"></i></a>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#model{{$debit->id}}"
@@ -116,8 +133,7 @@
                                                         <button type="button"
                                                             class="btn btn-info waves-effect text-white"
                                                             data-bs-dismiss="modal">Hủy bỏ</button>
-                                                        <button 
-                                                            type="submit"
+                                                        <button type="submit"
                                                             class="btn btn-danger waves-effect text-white">Có,
                                                             Chắc chắn</button>
                                                     </div>
@@ -160,7 +176,7 @@
                             @empty
                             <tr>
                                 <td colspan="9" style="text-align: center">
-                                    <b >Không tìm thấy bản ghi nợ nào</b>
+                                    <b>Không tìm thấy bản ghi nợ nào</b>
                                 </td>
                             </tr>
                             @endforelse
@@ -178,9 +194,9 @@
 
 @endsection
 @push('scripts')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('input[name=created_at]').flatpickr();
         })
-    </script>
+</script>
 @endpush

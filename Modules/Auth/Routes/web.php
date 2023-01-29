@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 use Modules\Auth\Http\Controllers\AuthController;
 
 Route::controller(AuthController::class)->group(function() {
-    Route::get('/dang-nhap', 'login')->name('auth.login.get');
+    Route::get('/dang-nhap', 'login')->name('login');
     Route::post('dang-nhap', 'postLogin')->name('auth.login.post');
 });

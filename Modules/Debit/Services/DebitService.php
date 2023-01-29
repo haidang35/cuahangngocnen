@@ -19,6 +19,7 @@ class DebitService
         $debits = Debit::latest()
             ->searchKeyword($request->keyword)
             ->searchByCreatedAt($request->created_at)
+            ->searchByStatus($request->status)
             ->paginate(15);
         return $debits;
     }

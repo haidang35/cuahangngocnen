@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Debit\Http\Controllers\DebitController;
 
-Route::prefix('debits')->name('debit.')->controller(DebitController::class)->group(function() {
+Route::prefix('admin/debits')->middleware('auth')->name('debit.')->controller(DebitController::class)->group(function() {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');

@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Customer\Http\Controllers\CustomerController;
 
-Route::prefix('customers')->name('customer.')->controller(CustomerController::class)->group(function() {
+Route::prefix('admin/customers')->middleware('auth')->name('customer.')->controller(CustomerController::class)->group(function() {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store')->name('store');

@@ -43,12 +43,31 @@
                     {{-- <img src="../assets/images/users/5.jpg" class="img-circle" width="150" /> --}}
                     <h4 class="card-title m-t-10">{{ $customer->name }}</h4>
                     <div class="row text-center justify-content-md-center">
-                        <div class="col-4"><a href="javascript:void(0)" class="link">
-                                <font class="font-medium">254</font>
-                            </a></div>
-                        <div class="col-4"><a href="javascript:void(0)" class="link">
-                                <font class="font-medium">54</font>
-                            </a></div>
+                        <div class="col-6">
+                            <strong class="h4">Tổng số lần đã nợ: </strong>
+                            <br />
+                            <button class="btn btn-info"><b class="h5">{{ $customer->report->total_debit }}</b></button>
+                        </div>
+                        <div class="col-6">
+                            <strong class="h4">Tổng số mã nợ đã trả: </strong>
+                            <br />
+                            <button class="btn btn-success"><b class="h5">{{ $customer->report->total_paid_debit }}</b></button>
+                        </div>
+                        <div class="col-6">
+                            <strong class="h4">Tổng số mã nợ chưa trả: </strong>
+                            <br />
+                            <button class="btn btn-danger"><b class="h5">{{ $customer->report->total_processing_debit }}</b></button>
+                        </div>
+                        <div class="col-6">
+                            <strong class="h4">Tổng số mã nợ quá hẹn: </strong>
+                            <br />
+                            <button class="btn btn-danger"><b class="h5">{{ $customer->report->total_out_of_date_debit }}</b></button>
+                        </div>
+                        <div class="col-6">
+                            <strong class="h4">Tổng số mã nợ bị hủy bỏ: </strong>
+                            <br />
+                            <button class="btn btn-warning"><b class="h5">{{ $customer->report->total_cancelled_debit }}</b></button>
+                        </div>
                     </div>
                 </center>
             </div>

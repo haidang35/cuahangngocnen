@@ -82,12 +82,12 @@ class Debit extends Model
                 $text = 'Chưa trả';
                 break;
             case DebitStatus::OUT_OF_DATE:
-                $type = 'btn-warning';
-                $text = 'Hủy bỏ';
-                break;
-            case DebitStatus::CANCEL:
                 $type = 'btn-danger';
                 $text = 'Quá hạn trả ';
+                break;
+            case DebitStatus::CANCEL:
+                $type = 'btn-warning';
+                $text = 'Hủy bỏ';
                 break;
             default:
                 break;
@@ -111,5 +111,11 @@ class Debit extends Model
     {
         if (!$date) return $query;
         return $query->whereDate('created_at', $date);
+    }
+
+    public function scopeSearchByStatus($query, $status)
+    {
+        if (!$status) return $query;
+        return $query->whereStatus($status);
     }
 }

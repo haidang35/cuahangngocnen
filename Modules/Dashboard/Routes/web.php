@@ -14,6 +14,6 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Dashboard\Http\Controllers\DashboardController;
 
-Route::prefix('dashboard')->controller(DashboardController::class)->group(function() {
+Route::prefix('admin/dashboard')->middleware('auth')->controller(DashboardController::class)->group(function() {
     Route::get('/', 'index')->name('dashboard');
 });
