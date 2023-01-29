@@ -54,7 +54,7 @@ class Debit extends Model
     public function getPaymentDateAttribute($date)
     {
         if ($date) {
-            return Carbon::createFromFormat('Y-m-d', $date)->format('d-m-Y');
+            return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('H:i d-m-Y');
         }
     }
 

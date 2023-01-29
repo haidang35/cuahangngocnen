@@ -7,17 +7,14 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Quản lý ghi nợ</h4>
+        <h4 class="text-themecolor">Thùng rác ghi nợ</h4>
     </div>
     <div class="col-md-7 align-self-center text-end">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Quản lý ghi nợ</li>
+                <li class="breadcrumb-item active">Thùng rác ghi nợ</li>
             </ol>
-            <a href="{{ route('debit.create') }}" type="button"
-                class="btn btn-info d-none d-lg-block m-l-15 text-white"><i class="fa fa-plus-circle"></i> Tạo khách
-                hàng mới</a>
         </div>
     </div>
 </div>
@@ -39,7 +36,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title m-b-20">Quản lý ghi nợ</h5>
+                <h5 class="card-title m-b-20">Thùng rác ghi nợ</h5>
                 <form method="GET" action="{{ route('debit.index') }}" class="row">
                     <div class="col-md-3">
                         <input class="form-control" name="keyword" value="{{ request()->get('keyword') }}"
@@ -100,76 +97,24 @@
                                 <td>{{ $debit->deadline }}</td>
                                 <td>{{ $debit->payment_date }}</td>
                                 <td>
-                                    <a href="{{ route('debit.edit', ['id' => $debit->id]) }}" data-bs-toggle="modal"
-                                        data-bs-target="#model-status-{{$debit->id}}" class="btn btn-sm btn-success"><i
-                                            class="fa-sharp fa-solid fa-circle-check"></i></a>
-                                    <a href="{{ route('debit.edit', ['id' => $debit->id]) }}"
-                                        class="btn btn-sm btn-info"><i class="fa-sharp fa-solid fa-pen"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#model{{$debit->id}}"
-                                        class="btn btn-sm btn-danger"><i class="fa-sharp fa-solid fa-trash"></i></a>
-                                    <div id="model-status-{{$debit->id}}" class="modal" tabindex="-1" role="dialog"
-                                        aria-labelledby="model{{$debit->id}}Label" aria-hidden="true">
-                                        <form method="POST"
-                                            action="{{ route('debit.update.status', ['id' => $debit->id]) }}">
-                                            @csrf
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="model-status-{{$debit->id}}Label">
-                                                            Đánh dấu khách hàng đã thanh toán khoản nợ
-                                                        </h4>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-hidden="true"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h4>
-                                                            Khách hàng <b>{{ $debit->customer?->name }}</b></h4>
-                                                            <div class="form-group">
-                                                                <select class="form-control" name="status">
-                                                                    <option value="">Chọn trạng thái</option>
-                                                                    <option value="1">Đã thanh toán</option>
-                                                                    <option value="2">Chưa thanh toán</option>
-                                                                    <option value="3">Hủy</option>
-                                                                    <option value="4">Quá hạn</option>
-                                                                </select>
-                                                            </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button"
-                                                            class="btn btn-info waves-effect text-white"
-                                                            data-bs-dismiss="modal">Hủy bỏ</button>
-                                                        <button type="submit"
-                                                            class="btn btn-danger waves-effect text-white">Có,
-                                                            Chắc chắn</button>
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                                        </form>
-
-                                    </div>
-                                    <div id="model{{$debit->id}}" class="modal" tabindex="-1" role="dialog"
-                                        aria-labelledby="model{{$debit->id}}Label" aria-hidden="true">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#model{{$debit->id}}" class="btn btn-sm btn-danger">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </a>
+                                    <div id="model{{$debit->id}}" class="modal" tabindex="-1" role="dialog" aria-labelledby="model{{$debit->id}}Label" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="model{{$debit->id}}Label">Xác nhận xóa
-                                                        đơn ghi nợ</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-hidden="true"></button>
+                                                    <h4 class="modal-title" id="model{{$debit->id}}Label">Xác nhận Khôi phục ghi nợ
+                                                    </h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h4>Bạn đã chắc chắn xóa đơn ghi nợ <b>{{ $debit->formatted_amount
-                                                            }}</b>
-                                                        của khách hàng <b>{{ $debit->customer?->name }}</b></h4>
+                                                    <h4>Bạn đã chắc chắn khôi phục Khôi phục ghi nợ {{ $debit->formattedAmount }} cho khách hàng
+                                                        <b>{{ $debit->customer?->name }}</b></h4>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-info waves-effect text-white"
-                                                        data-bs-dismiss="modal">Hủy bỏ</button>
-                                                    <a href="{{ route('debit.delete', ['id' => $debit->id]) }}"
-                                                        type="button" class="btn btn-danger waves-effect text-white">Có,
-                                                        Chắc chắn xóa</a>
+                                                    <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal">Hủy bỏ</button>
+                                                    <a href="{{ route('debit.restore', ['id' => $debit->id]) }}" type="button" class="btn btn-danger waves-effect text-white" >Có, Chắc chắn</a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->

@@ -38,6 +38,22 @@ class DebitController extends Controller
     }
 
     /**
+     * Display a listing of the trashed resource.
+     * @return Renderable
+     */
+    public function trashed(Request $request)
+    {
+        $request->validate([
+            'keyword' => 'nullable|string',
+            'created_at' => 'nullable|string'
+        ]);
+        $debits = $this->debitService->findAllTrashed($request);
+        return view('debit::trashed', [
+            'debits' => $debits
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
@@ -108,7 +124,7 @@ class DebitController extends Controller
             'message' => 'Xóa ghi nợ thành công'
         ]);
     }
-    
+
     /**
      * updateStatus
      *
@@ -124,6 +140,14 @@ class DebitController extends Controller
         $result = $this->debitService->updateStatus($id, $request->status);
         return redirect()->back()->with([
             'message' => 'Cập nhật trạng thái ghi nợ thành công'
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $result = $this->debitService->restore($id);
+        return redirect()->route('debit.index')->with([
+            'message' => 'Khôi phục ghi nợ thành công'
         ]);
     }
 }

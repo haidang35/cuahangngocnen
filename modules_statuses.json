@@ -2,5 +2,6 @@
     "Dashboard": true,
     "Debit": true,
     "Auth": true,
-    "Customer": true
+    "Customer": true,
+    "Report": true
 }

@@ -22,6 +22,21 @@ class CustomerService
     }
 
     /**
+     * findAllTrashed
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function findAllTrashed($request)
+    {
+        $customers = Customer::latest()
+            ->onlyTrashed()
+            ->searchKeyword($request->keyword)
+            ->paginate(15);
+        return $customers;
+    }
+
+    /**
      * save
      *
      * @param  mixed $request
@@ -49,6 +64,12 @@ class CustomerService
     public function delete($id)
     {
         $customer = Customer::findOrFail($id)->delete();
+        return $customer;
+    }
+
+    public function restore($id)
+    {
+        $customer = Customer::withTrashed()->findOrFail($id)->restore();
         return $customer;
     }
 }

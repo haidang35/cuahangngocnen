@@ -56,4 +56,19 @@ class Customer extends Model
             'total_processing_debit' => $this->debits->where('status', DebitStatus::PROCESSING)->count(),
         ];
     }
+
+    public function getTotalFormattedDebitAmountAttribute()
+    {
+        return number_format($this->debits()->sum('amount'), 0) . ' VND';
+    }
+
+    public function getTotalProcessingDebitAmountAttribute()
+    {
+        return number_format($this->debits()->whereIn('status', [DebitStatus::PROCESSING, DebitStatus::OUT_OF_DATE])->sum('amount'), 0) . ' VND';
+    }
+    
+    public function getTotalPaidDebitAmountAttribute()
+    {
+        return number_format($this->debits()->whereIn('status', [DebitStatus::PAID])->sum('amount'), 0) . ' VND';
+    }
 }

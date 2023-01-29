@@ -11,7 +11,7 @@
                     <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu"
                         data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
-                 <span class="caret"></span></a>
+                        <span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
                         <!-- text-->
                         <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My
@@ -46,16 +46,29 @@
                         <span class="hide-menu">Tổng quan</span>
                     </a>
                 </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{ route('customer.index') }}" aria-expanded="false">
-                        <i class="fa-solid fa-gauge"></i>
-                        <span class="hide-menu">Khách hàng</span>
-                    </a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="{{ route('customer.index') }}"
+                        aria-expanded="false"> <i class="fa-sharp fa-solid fa-users"></i><span class="hide-menu">Khách
+                            hàng</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('customer.index') }}">Tất cả khách hàng</a></li>
+                        <li><a href="{{ route('customer.create') }}">Tạo mới</a></li>
+                        <li><a href="{{ route('customer.trashed') }}">Thùng rác
+                            </a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="{{ route('debit.index') }}"
+                        aria-expanded="false"> <i class="fa-solid fa-credit-card"></i></i><span class="hide-menu">Ghi
+                            nợ</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('debit.index') }}">Danh sách ghi nợ</a></li>
+                        <li><a href="{{ route('debit.trashed') }}">Thùng rác
+                            </a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('debit.index') }}" aria-expanded="false">
+                    <a class="waves-effect waves-dark" href="{{ route('report.index') }}" aria-expanded="false">
                         <i class="fa-solid fa-gauge"></i>
-                        <span class="hide-menu">Ghi nợ</span>
+                        <span class="hide-menu">Thống kê</span>
                     </a>
                 </li>
             </ul>

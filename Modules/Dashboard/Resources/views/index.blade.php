@@ -9,16 +9,15 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Dashboard 1</h4>
+        <h4 class="text-themecolor">Tổng quan</h4>
     </div>
     <div class="col-md-7 align-self-center text-end">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard 1</li>
+                <li class="breadcrumb-item active">Tổng quan</li>
             </ol>
-            <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
-                    class="fa fa-plus-circle"></i> Create New</button>
+
         </div>
     </div>
 </div>
@@ -37,8 +36,8 @@
                 <div class="d-flex flex-row">
                     <div class="round align-self-center round-success"><i class="ti-wallet"></i></div>
                     <div class="m-l-10 align-self-center">
-                        <h3 class="m-b-0">3564</h3>
-                        <h5 class="text-muted m-b-0">New Customers</h5>
+                        <h3 class="m-b-0">{{ $data->total_customer }}</h3>
+                        <h5 class="text-muted m-b-0">Tổng khách hàng</h5>
                     </div>
                 </div>
             </div>
@@ -52,8 +51,8 @@
                 <div class="d-flex flex-row">
                     <div class="round align-self-center round-info"><i class="ti-user"></i></div>
                     <div class="m-l-10 align-self-center">
-                        <h3 class="m-b-0">342</h3>
-                        <h5 class="text-muted m-b-0">New Products</h5>
+                        <h3 class="m-b-0">{{ $data->total_debit }}</h3>
+                        <h5 class="text-muted m-b-0">Tổng ghi nợ</h5>
                     </div>
                 </div>
             </div>
@@ -67,8 +66,8 @@
                 <div class="d-flex flex-row">
                     <div class="round align-self-center round-danger"><i class="ti-calendar"></i></div>
                     <div class="m-l-10 align-self-center">
-                        <h3 class="m-b-0">56%</h3>
-                        <h5 class="text-muted m-b-0">Today's Profit</h5>
+                        <h3 class="m-b-0">{{ $data->total_processing_debit }}</h3>
+                        <h5 class="text-muted m-b-0">Tổng ghi nợ chưa trả</h5>
                     </div>
                 </div>
             </div>
@@ -82,8 +81,78 @@
                 <div class="d-flex flex-row">
                     <div class="round align-self-center round-success"><i class="ti-settings"></i></div>
                     <div class="m-l-10 align-self-center">
-                        <h3 class="m-b-0">56%</h3>
-                        <h5 class="text-muted m-b-0">New Leads</h5>
+                        <h3 class="m-b-0">{{ $data->total_paid_debit }}</h3>
+                        <h5 class="text-muted m-b-0">
+                            Tổng ghi nợ đã trả
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round align-self-center round-success"><i class="ti-settings"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0">{{ $data->total_debit_in_year }}</h3>
+                        <h5 class="text-muted m-b-0">
+                            Tổng ghi nợ năm nay
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round align-self-center round-success"><i class="ti-settings"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0">{{ $data->total_debit_this_month }}</h3>
+                        <h5 class="text-muted m-b-0">
+                            Tổng ghi nợ trong tháng
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round align-self-center round-success"><i class="ti-settings"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0">{{ $data->total_debit_this_week }}</h3>
+                        <h5 class="text-muted m-b-0">
+                            Tổng ghi nợ trong tuần
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="round align-self-center round-success"><i class="ti-settings"></i></div>
+                    <div class="m-l-10 align-self-center">
+                        <h3 class="m-b-0">{{ $data->total_debit_today }}</h3>
+                        <h5 class="text-muted m-b-0">
+                            Tổng ghi nợ hôm nay
+                        </h5>
                     </div>
                 </div>
             </div>

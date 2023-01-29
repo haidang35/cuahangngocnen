@@ -22,13 +22,30 @@ class CustomerController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-public function index(Request $request)
+    public function index(Request $request)
     {
         $request->validate([
             'keyword' => 'nullable|string',
         ]);
         $customers = $this->customerService->findAll($request);
         return view('customer::index', [
+            'customers' => $customers
+        ]);
+    }
+    
+    /**
+     * trashed
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function trashed(Request $request)
+    {
+        $request->validate([
+            'keyword' => 'nullable|string',
+        ]);
+        $customers = $this->customerService->findAllTrashed($request);
+        return view('customer::trashed', [
             'customers' => $customers
         ]);
     }
@@ -103,6 +120,20 @@ public function index(Request $request)
         $customer = $this->customerService->delete($id);
         return redirect()->route('customer.index')->with([
             'message' => 'Xóa khách hàng thành công'
+        ]);
+    }
+    
+    /**
+     * restore
+     *
+     * @param  int $id
+     * @return Renderable
+     */
+    public function restore($id)
+    {
+        $result = $this->customerService->restore($id);
+        return redirect()->route('customer.index')->with([
+            'message' => 'Khôi phục khách hàng thành công'
         ]);
     }
 }

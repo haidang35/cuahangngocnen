@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/assets/images/favicon.png') }}">
-    <title>Cua hang Ngoc Nen</title>
+    <title>Cửa hàng Ngọc Nên</title>
     <!-- This page CSS -->
     <!-- chartist CSS -->
     <link href="{{ asset('admin/assets/node_modules/morrisjs/morris.css') }}" rel="stylesheet">
