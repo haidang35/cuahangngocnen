@@ -70,7 +70,7 @@
                                 value="{{ old('note') }}"></textarea>
                         </div>
                     </div>
-                    <button class="btn btn-primary text-white" type="submit">Submit form</button>
+                    <button class="btn btn-primary text-white" type="submit">Lưu thông tin</button>
                 </form>
                 <script>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
