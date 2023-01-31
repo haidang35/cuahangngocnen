@@ -45,7 +45,7 @@ class DebitService
 
     public function save($request)
     {
-        $amount = str_replace('.', '', $request->amount);
+        $amount = str_replace(',', '', $request->amount);
         $newDebit = Debit::create([
             'customer_id' => $request->customer_id,
             'amount' => $amount,
@@ -58,7 +58,7 @@ class DebitService
     public function update($id, $request)
     {
         $debit = Debit::findOrFail($id);
-        $amount = str_replace('.', '', $request->amount);
+        $amount = str_replace(',', '', $request->amount);
         return $debit->update([
             'amount' => $amount,
             'payment_date' => $request->payment_date,

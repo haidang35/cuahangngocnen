@@ -39,7 +39,7 @@
                         <div class="col-md-12 mb-3">
                             <label class="form-label">Số tiền</label>
                             <input type="text" name="amount" class="form-control @error('amount')is-invalid @enderror" placeholder="Số tiền"
-                                value="{{ number_format($debit->amount, 0, '.', '.')}}" required>
+                                value="{{ number_format($debit->amount, 0, ',', ',')}}" required>
                                 @error('amount')
                                 <div class="invalid-feedback" style="font-size: 16px">
                                     {{ $message }}
@@ -97,12 +97,12 @@
 @push('scripts')
 <script>
     function getNumberWithCommas(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     $(document).ready(function() {
         $('input[name=amount]').keyup(function(e) {
-            const value = $(this).val().replaceAll('.', '')
+            const value = $(this).val().replaceAll(/,/g, '')
             $(this).val(getNumberWithCommas(value));
         })
 

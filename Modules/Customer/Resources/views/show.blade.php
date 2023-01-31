@@ -363,12 +363,12 @@
 @push('scripts')
 <script>
     function getNumberWithCommas(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     $(document).ready(function() {
         $('input[name=amount]').keyup(function(e) {
-            const value = $(this).val().replaceAll('.', '')
+            const value = $(this).val().replaceAll(/,/g, '')
             $(this).val(getNumberWithCommas(value));
         });
 
