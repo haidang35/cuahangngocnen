@@ -5,6 +5,7 @@ namespace Modules\Auth\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Auth\Http\Requests\LoginRequest;
 use Modules\Auth\Services\AuthService;
 
@@ -29,6 +30,9 @@ class AuthController extends Controller
      */
     public function login()
     {
+        if(Auth::check()) {
+            return redirect()->route('dashboard');
+        }
         return view('auth::login');
     }
 
@@ -42,7 +46,7 @@ class AuthController extends Controller
     {
         $result = $this->authService->login($request);
         if ($result) {
-            return redirect()->intended('dashboard');
+            return redirect()->route('dashboard');
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
