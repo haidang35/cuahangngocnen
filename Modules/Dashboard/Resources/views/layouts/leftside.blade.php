@@ -71,6 +71,12 @@
                         <span class="hide-menu">Thống kê</span>
                     </a>
                 </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="https://docs.google.com/document/d/1qbl-TQg2TJwN2RH5mJ3BL7lItI6oQVrycxty_S2PDoo/edit?usp=sharing" target="_blank" aria-expanded="false">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span class="hide-menu">Hướng dẫn sử dụng</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
