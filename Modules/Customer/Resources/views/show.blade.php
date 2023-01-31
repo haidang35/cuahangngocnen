@@ -367,7 +367,7 @@
     }
 
     $(document).ready(function() {
-        $('input[name=amount]').keyup(function(e) {
+        $('input[name=amount]').change(function(e) {
             const value = $(this).val().replaceAll(/,/g, '')
             $(this).val(getNumberWithCommas(value));
         });
