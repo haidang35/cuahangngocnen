@@ -10,11 +10,12 @@ class ReportService
 {
     public function getData()
     {
-        $customers = Customer::
-            join('debits', 'customers.id', 'debits.customer_id')
-            ->select('customers.*')
+        $customers = Customer::select('customers.*')
+            ->leftJoin('debits', function ($join) {
+                $join->on('customers.id', '=' ,'debits.customer_id');
+            })
+            ->groupBy('customers.id')
             ->addSelect(DB::raw('SUM(amount) as total_debit_amount'))
-            ->groupBy('debits.customer_id')
             ->orderByDesc('total_debit_amount')
             ->paginate(10);
         return [
